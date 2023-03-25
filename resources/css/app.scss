@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'flash.css';
+
+@import '../../vendor/filament/forms/dist/module.esm.css';
+
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+[x-cloack] {
+    display: none;
+}
+
+*::-webkit-scrollbar-track {
+    @apply bg-slate-200;
+
+    &:hover {
+        @apply hover:bg-slate-300;
+    }
+}
+
+*::-webkit-scrollbar {
+    @apply bg-slate-200;
+
+    width: 8px;
+    height: 8px;
+
+    &:hover {
+        @apply hover:bg-slate-300;
+    }
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply bg-slate-400;
+
+    &:hover {
+        @apply hover:bg-slate-500;
+    }
+}
+
+.hovered-section {
+    .hover-action {
+        @apply hidden;
+    }
+
+    &:hover {
+        .hover-action {
+            @apply flex;
+        }
+    }
+}
