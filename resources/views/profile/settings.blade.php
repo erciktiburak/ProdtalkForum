@@ -31,13 +31,6 @@
         <livewire:profile.details />
     </div>
     <div class="w-full flex flex-col gap-3">
-        <span class="font-medium text-slate-700">Linked accounts</span>
-        <span class="text-xs text-slate-700">
-            These linked accounts allow you to sign into the forum using other providers.
-        </span>
-        <livewire:profile.socials />
-    </div>
-    <div class="w-full flex flex-col gap-3">
         <span class="font-medium text-slate-700">Notifications</span>
         <span class="text-xs text-slate-700 mb-5">
             Choose how we should notify you.
