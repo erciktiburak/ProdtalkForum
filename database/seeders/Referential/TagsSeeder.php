@@ -12,13 +12,13 @@ class TagsSeeder extends Seeder
             "name" => "Test Posting",
             "color" => "#B59E8C",
             "icon" => "fa-solid fa-vial",
-            "description" => "Test out Flarum in this tag. Discussions in this tag will be deleted every so often.",
+            "description" => "Test out ProdTalk in this tag. Discussions in this tag will be deleted every so often.",
         ],
         [
             "name" => "Support",
             "color" => "#4B93D1",
             "icon" => "fa-solid fa-wrench",
-            "description" => "Get help setting up, using, and customising Flarum.",
+            "description" => "Get help setting up, using, and customising ProdTalk.",
         ],
         [
             "name" => "Meta",
@@ -30,7 +30,7 @@ class TagsSeeder extends Seeder
             "name" => "Praise",
             "color" => "#9354CA",
             "icon" => "fa-solid fa-hand-holding-heart",
-            "description" => "Share you thanks for Flarum, its team or any of the participants in our ecosystem.",
+            "description" => "Share you thanks for ProdTalk, its team or any of the participants in our ecosystem.",
         ],
         [
             "name" => "Proposals",
@@ -54,7 +54,7 @@ class TagsSeeder extends Seeder
             "name" => "Resources",
             "color" => "#626C78",
             "icon" => "fa-solid fa-suitcase",
-            "description" => "Share Flarum-related resources and services here: hosting, jobs, etc.",
+            "description" => "Share ProdTalk-related resources and services here: hosting, jobs, etc.",
         ],
         [
             "name" => "Off-topic",
@@ -66,7 +66,7 @@ class TagsSeeder extends Seeder
             "name" => "Feedback",
             "color" => "#9354CA",
             "icon" => "fa-solid fa-comment-dots",
-            "description" => "For discussing Flarum core features and design. For issues use Support.",
+            "description" => "For discussing ProdTalk core features and design. For issues use Support.",
         ],
     ];
 
