@@ -61,3 +61,84 @@ Admins can automatically generate login information for customers or manually cr
 * Commenting: Users can engage in discussions by leaving comments on other posts, facilitating interactive and collaborative conversations.
 * Voting and Rating: Customers can vote on and rate other posts, expressing their opinions and influencing the popularity and visibility of content.
 * Post Search and Viewing: Users can search for and browse all posts on the forum, allowing them to explore a wide range of topics and discussions.
+
+#### Automation Operations:
+
+* Forum Satisfaction: To ensure customer satisfaction, a short survey will be conducted to gather feedback about the forum experience.
+* Data Collection and Analysis: Automatically collect and analyze data from customer posts and feedback to identify trends and potential issues.
+* Post Management: Automatically manage customer posts by sorting and organizing them in the admin panel for easy viewing and editing.
+* Customer Communication: Automatically send personalized messages to customers to address any issues or concerns they may have.
+* Automatic Post Approval: Automatically approve or deny posts based on predefined criteria and rules to ensure compliance with community guidelines.
+* Email Notifications: Send email notifications to customers when their posts are approved or denied.
+* Performance Tracking: Automatically track and monitor the performance and effectiveness of the forum to identify areas for improvement.
+* Semantic Analysis: Utilize advanced natural language processing techniques to detect and analyze sentiment in customer feedback, allowing for automatic identification and removal of bad reviews.
+* Real-time monitoring: Continuously monitor and analyze customer feedback, allowing for immediate identification and resolution of any issues that may arise.
+* Feedback report: Automatically generate detailed reports on customer feedback, including statistics, trends, and insights, which can be shared with other departments or team members.
+
+All of the above features work together to make the forum run smoothly and efficiently, providing a better experience for both customers and the company. Additionally, the use of advanced automation techniques such as semantic analysis and real-time monitoring will enable the company to gain valuable insights and make data-driven decisions to improve the overall customer experience.
+
+### User Types and Characteristics
+
+The forum website has two types of users: Administrators and Customers.
+
+* Administrators: These are users who have the ability to manage the content on the forum, including adding, editing, and deleting posts. They also have access to advanced features such as semantic analysis and report generation.
+* Customers: These are users who have the ability to view, create, and comment on posts on the forum. They must have a valid login to access the forum, which can be obtained by purchasing a product or scanning a QR code.
+* User Privileges: Customers have access to a limited set of features, while Administrators have access to all features. Customers can only access their own posts and comments, while Administrators can access all posts and comments.
+* Access Method: Customers can access the forum website by logging in with their login information, while Administrators can access the forum website through the admin panel.
+* User Verification: Customers must be verified as having purchased a product before they can access the forum, this can be done through email verification and QR code scanning.
+* User Management: Administrators have the ability to manage and monitor customer accounts, including the ability to block or delete accounts that violate the forum's terms of service.
+* Security: The forum website uses advanced security measures to protect user data and prevent unauthorized access. This includes encryption, password hashing, and IP blocking.
+
+Overall, the forum website is designed to provide a secure and user-friendly experience for both Administrators and Customers, with a range of features and functionalities to meet their different needs.
+
+### Actor(Client and Administrator) Survey
+#### Client (Customer):
+Customers can access the system by logging in with their registered credentials, typically via their email. Once logged in, they can explore and browse through posts, view post details, leave comments, and express their preferences by liking or disliking posts. Customers have the option to edit their own posts, select preferences from a provided list, and cancel selections if necessary. Additionally, they can create and manage their user profile, including customizing their profile picture, username, and bio. The search functionality enables customers to find other users, whom they can follow, unfollow, or block as required. Customers also have the ability to create, join, or leave groups and actively participate in group discussions.
+
+#### Administrator:
+Administrators are responsible for managing the forum site and overseeing its content. They have the authority to create login credentials for new customers and maintain overall control. Administrators can view, edit, add, and remove posts as necessary. They can also communicate directly with customers through a messaging feature. Additionally, administrators have the ability to suggest updates for customers' posts, make changes, or delete them if needed. They play a vital role in monitoring the website for inappropriate content and moderating user-generated content. Administrators also manage user accounts and profiles, with the capability to disable, delete, or ban users when required. They can create, manage, and moderate groups, and have the authority to assign moderators. Administrators can also customize the website's appearance, including the theme, color scheme, and branding, to align with the forum's desired aesthetics.
+
+### Operating Environment
+
+The system's backend will be built using the latest version of .NET Core and will leverage Google Firebase Storage for efficient data storage. This setup guarantees excellent performance and scalability for the API services.
+For the web interface, the frontend development will involve utilizing Laravel 10.0 vue.js and Tailwindcss. The website will feature a multi-page structure, delivering a dynamic and engaging user experience.
+To accommodate mobile users, the website will prioritize responsive design, ensuring seamless access across various devices, including smartphones and tablets. This approach aims to provide an accessible and user-friendly experience for users on the move. Thorough testing will be conducted on different devices and web browsers to guarantee compatibility and smooth functionality.
+
+### Design and Implementation Constraints
+
+The development of the Laravel-Vue forum website poses some difficulties, particularly in regard to ensuring efficient communication between the client and server applications. Users will be able to share posts and receive prompt responses from the web server. However, when high-dimensional media, such as images, are shared, they will be subject to system review before being posted to the forum.
+
+Two key limitations have been identified in the system. First, high-dimensional media shares will be moderated by an administrator to ensure compliance with the website's guidelines. Second, the use of certain forbidden words, such as slang, will be prohibited in order to maintain a respectful and professional tone on the forum.
+
+Additionally, the system implements a semantic analysis method to detect and flag potentially negative or harmful comments, to ensure a safe and welcoming environment for all users.
+
+### User Documentation
+
+When customers log into the system, a user manual will be included in the system to help customers understand the usage and working methodology of the system.
+This user manual is written in a simple and very descriptive way for all users (all ages, non-technical, unskilled, etc.). The level and content of terminology in the system are also mentioned.
+
+Briefly, the user manual covers the system's features and purpose. The user guide includes menu usage, product details, a glossary of terms, and a support section where the customer can get support in case of any problems.
+
+### Assumptions and Dependencies
+
+### External Interface Requirements
+
+#### User Interfaces
+
+Upon accessing the web application, new users will be directed to the homepage where they can view the shared posts. To access additional features, users are required to create an account by making a purchase on the website.
+
+Once logged in, users can create their own posts. Each shared post will have an associated edit button, allowing users to modify the content. Editing the post will open a dedicated page where users can update the title and description.
+
+Users will also have the ability to search within the system. Clicking on a post will display its details, and users can explore other posts by the same author.
+
+#### Hardware Interfaces
+
+Users accessing the system directly from their mobile devices will require a device with a camera feature to fully utilize certain functionality within the system. This includes, but is not limited to, the ability to upload images, videos and other multimedia content. Additionally, certain features of the system such as QR code scanning, facial recognition, or augmented reality may also require a camera for optimal performance.
+
+#### Software Interfaces
+
+The web application is designed to be compatible with all popular web browsers, including Internet Explorer 9 and above. It is built using the Laravel and Vue frameworks, which provide a robust and efficient environment for the development of web applications. The use of these frameworks ensures that the web app has a clear and consistent structure, making it easy to maintain, update and expand. Additionally, it also ensures that the application is highly performant and scalable.
+
+#### Communications Interfaces
+
+Creating a forum account must be paid, so the system will ban unregistered users. As a result, users will have forum login information when they purchase products. The system should use HTTPS as a communication standard because HTTPS is much more efficient and secure (due to SSL encryption) when small amounts of data are to be sent to clients. Also, thanks to HTTPS, passwords or sensitive data will be encrypted on the client side.
