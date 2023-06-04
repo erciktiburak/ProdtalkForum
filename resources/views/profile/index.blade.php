@@ -49,6 +49,4 @@
 
     <x-profile.stats :user="$user"/>
 
-    <livewire:profile.world-map-visits :user="$user" />
-
 </x-layout-profile>
