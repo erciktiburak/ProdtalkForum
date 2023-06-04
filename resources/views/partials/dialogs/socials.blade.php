@@ -6,11 +6,13 @@
     </div>
     <div class="w-full flex flex-row flex-wrap justify-center items-center mt-2">
         @foreach(Socials::enabledCases() as $social)
-            <a href="{{ route('socialite.redirect', $social) }}" class="text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-xs px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
-               style="background-color: {{ '#' . Socials::color($social) }}">
-                @include('partials.dialogs.socials-icon.' . $social)
-                <span class="first-letter:uppercase">{{ $social }}</span>
-            </a>
+            @if ($social !== 'github') <!-- GitHub butonunu hariç tutuyoruz -->
+                <a href="{{ route('socialite.redirect', $social) }}" class="text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-xs px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
+                   style="background-color: {{ '#' . Socials::color($social) }}">
+                    @include('partials.dialogs.socials-icon.' . $social)
+                    <span class="first-letter:uppercase">{{ $social }}</span>
+                </a>
+            @endif
         @endforeach
     </div>
 </div>

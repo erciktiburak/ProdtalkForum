@@ -193,7 +193,7 @@ class ReplyDetails extends Component implements HasForms
 
             $isCreation = true;
         }
-        $this->comment->is_nsfw = $returnCode; 
+        $this->comment->is_nsfw = (int) $returnCode;
         $this->comment->save();
         $this->emit('replyCommentSaved', $this->reply->id);
         Filament::notify('success', 'Comment successfully saved.');

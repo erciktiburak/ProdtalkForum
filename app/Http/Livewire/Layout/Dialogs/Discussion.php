@@ -90,7 +90,6 @@ class Discussion extends Component implements HasForms
             $this->discussion->is_public = $data['is_public'] ?? false;
     
             $this->discussion->is_nsfw = (int) $returnCode; // Explicitly cast to integer
-            
             $this->discussion->save();
             DiscussionTag::where('discussion_id', $this->discussion->id)->delete();
             $update = true;
