@@ -37,7 +37,6 @@
     </div>
     <div class="w-full flex flex-col gap-2">
         <span class="text-slate-600 font-medium text-sm">
-            Link other social accounts:
         </span>
         <div class="w-full flex items-center gap-1">
             @foreach(Socials::enabledCases() as $social)
