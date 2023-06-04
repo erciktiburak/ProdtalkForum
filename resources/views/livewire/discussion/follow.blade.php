@@ -30,7 +30,7 @@
                             <i class="fa-regular fa-star"></i> Not Following
                         </div>
                         <span class="text-slate-500 text-xs">
-                        Be notified only when @mentioned.
+                        Receive notifications only when @mentioned.
                     </span>
                     </button>
                 </li>
@@ -40,7 +40,7 @@
                             <i class="fa-solid fa-star"></i> Following
                         </div>
                         <span class="text-slate-500 text-xs">
-                        Be notified of all replies.
+                        Receive notifications for all replies.
                     </span>
                     </button>
                 </li>
@@ -50,7 +50,7 @@
                             <i class="fa-regular fa-eye-slash"></i> Ignoring
                         </div>
                         <span class="text-slate-500 text-xs">
-                        Never be notified. Hide from the discussion list.
+                        Opt out of notifications. Hide from the discussion list.
                     </span>
                     </button>
                 </li>
