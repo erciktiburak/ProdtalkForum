@@ -106,12 +106,28 @@ class Discussion extends Component implements HasForms
             ]);
             dispatch(new CalculateUserPointsJob(user: auth()->user(), source: $discussion, type: PointsConstants::START_DISCUSSION->value));
         }
-        foreach ($data['tags'] as $tag) {
+        $addedNSFWTag = false;
+
+        foreach ($data['tags'] as $tag) {  
+
             DiscussionTag::create([
+
                 'discussion_id' => $discussion->id,
                 'tag_id' => $tag
             ]);
+
+            if ($tag === 11){
+                $addedNSFWTag = true;
+            }
         }
+
+        if ($addedNSFWTag && $returnCode === 1){
+            DiscussionTag::create([
+                'discussion_id' => $discussion->id,
+                'tag_id' => 11
+            ]); 
+        }
+
         Filament::notify(
             'success',
             ($update ? 'Discussion updated successfully' : 'Discussion created successfully'),
