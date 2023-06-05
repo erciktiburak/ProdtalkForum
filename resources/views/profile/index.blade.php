@@ -48,5 +48,5 @@
     </div>
 
     <x-profile.stats :user="$user"/>
-
+    
 </x-layout-profile>
