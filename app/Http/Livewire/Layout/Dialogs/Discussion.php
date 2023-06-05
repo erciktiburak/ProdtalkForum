@@ -120,7 +120,7 @@ class Discussion extends Component implements HasForms
             }
         }
 
-        if ($addedNSFWTag && $returnCode === 1){
+        if (!$addedNSFWTag && $returnCode === 1){
             DiscussionTag::create([
                 'discussion_id' => $discussion->id,
                 'tag_id' => 11
