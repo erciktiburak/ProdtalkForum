@@ -181,8 +181,8 @@ class ReplyDetails extends Component implements HasForms
     {
         $data = $this->form->getState();
         $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /home/server/prodtalk/isCommentToxic.py", $out, $returnCode);
-        error_log(print_r("value = {$returnCode} {$data['content']}"));
-    
+        error_log(print_r("echo '{$data['content']}' | python3 /home/server/prodtalk/isCommentToxic.py", TRUE));
+        
         $this->comment->content = $data['content'];
         $isCreation = false;
 
