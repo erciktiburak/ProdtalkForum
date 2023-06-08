@@ -21,8 +21,8 @@ img_array /= 255.
 # Make a prediction
 prediction = model.predict(img_array)
 
-# Get the corresponding label for the prediction
-class_labels = {v: k for k, v in train_generator.class_indices.items()}
+class_indices = np.load("class_indices.npy", allow_pickle=True).item()
+class_labels = {v: k for k, v in class_indices.items()}
 prediction[0] = 1-prediction[0]
 isSafe = prediction[0] > 0.5
 print(f"Probabilty Of Safe = {prediction[0][0]*100:.2f}%")
