@@ -31,7 +31,7 @@ class StatsOverview8 extends PieChartWidget
                     'borderWidth' => 1,
                     'borderRadius' => 15,
                     'hoverOffset' => 4,
-                    'radius' => 70,
+                    'radius' => 150,
                     'hoverBorderWidth'	=> 3,
                     'circumference' => 360,
                     'weight' => 5,

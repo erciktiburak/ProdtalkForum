@@ -3,46 +3,39 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Discussion;
-use Filament\Widgets\LineChartWidget;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use Filament\Widgets\LineChartWidget ;
 
-class StatsOverview6 extends LineChartWidget
+class StatsOverview6 extends LineChartWidget 
 {
     protected function getHeading(): string
     {
-        return 'Discussions';
+        return 'Discussion Creation Dates';
     }
 
     protected function getData(): array
     {
-        $discussions = Discussion::whereYear('created_at', '=', date('Y'))
-            ->orderBy('created_at')
-            ->get()
-            ->groupBy(function ($discussion) {
-                return $discussion->created_at->format('M');
-            })
-            ->map(function ($group) {
-                return $group->count();
-            });
-
         $labels = [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
         ];
 
-        $dataset = [
-            'label' => 'Discussions created',
-            'data' => [],
-        ];
+        $data = [];
 
         foreach ($labels as $label) {
-            $dataset['data'][] = $discussions->get($label, 0);
+            $month = date('m', strtotime($label));
+            $year = date('Y', strtotime($label));
+            $count = Discussion::whereMonth('created_at', $month)->whereYear('created_at', $year)->count();
+            $data[] = $count;
         }
 
         return [
-            'datasets' => [$dataset],
             'labels' => $labels,
+            'datasets' => [[
+                'label' => 'Discussion Creation Dates',
+                'data' => $data,
+                'fill' => false,
+                'borderColor' => 'rgb(75, 192, 192)',
+                'tension' => 0.1,
+            ]],
         ];
     }
-    
 }
