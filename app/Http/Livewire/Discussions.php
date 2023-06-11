@@ -49,10 +49,10 @@ class Discussions extends Component implements HasForms
                         ->disableLabel()
                         ->disablePlaceholderSelection()
                         ->options([
-                            'latest' => 'Latest',
-                            'oldest' => 'Oldest',
-                            'trending' => 'Trending',
-                            'most-liked' => 'Most liked',
+                            'latest' => 'Recently Added',
+                            'oldest' => 'From Old to New',
+                            'trending' => 'Popular',
+                            'most-liked' => 'Highly Rated',
                         ])
                         ->columnSpan([
                             12,
@@ -96,18 +96,18 @@ class Discussions extends Component implements HasForms
         switch ($sort) {
             case 'oldest':
                 $query->orderBy('created_at', 'asc');
-                $this->selectedSort = 'Oldest discussions';
+                $this->selectedSort = 'From Old to New discussions';
                 break;
             case 'trending':
                 $query->orderBy('unique_visits', 'desc')
                     ->orderBy('created_at', 'desc');
-                $this->selectedSort = 'Trending discussions';
+                $this->selectedSort = 'Popular discussions';
                 break;
             case 'most-liked':
                 $query->withCount('likes')
                     ->orderBy('likes_count', 'desc')
                     ->orderBy('created_at', 'desc');
-                $this->selectedSort = 'Most liked discussions';
+                $this->selectedSort = 'Highly Rated discussions';
                 break;
             case 'nsfw-latest':
                 $query->orderBy('created_at', 'desc')->where("is_nsfw", 1);
@@ -116,7 +116,7 @@ class Discussions extends Component implements HasForms
             case 'latest':
             default:
                 $query->orderBy('created_at', 'desc');
-                $this->selectedSort = 'Latest discussions';
+                $this->selectedSort = 'Recent discussions';
                 break;
         }
 
