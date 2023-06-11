@@ -86,6 +86,13 @@ class Discussions extends Component implements HasForms
             });
         }
 
+        // Discussions with the NSFW tag are filtered and blocked on the homepage
+        if ($this->tag != 11) {
+            $query->whereDoesntHave('tags', function ($query) {
+                return $query->where('tags.id', 11);
+            });
+        }
+
         switch ($sort) {
             case 'oldest':
                 $query->orderBy('created_at', 'asc');
