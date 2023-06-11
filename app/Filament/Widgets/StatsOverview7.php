@@ -28,15 +28,12 @@ class StatsOverview7 extends PieChartWidget
                         'rgb(255, 0, 0)',
                         'rgb(54, 162, 235)',
                     ],
-                    'borderWidth' => 1,
-                    'borderRadius' => 15,
+                    'backgroundColor' => [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                    ],
                     'hoverOffset' => 4,
-                    'radius' => 150,
-                    'hoverBorderWidth'	=> 3,
-                    'circumference' => 360,
-                    'weight' => 5,
-                ],
-            ],
+                ]],
         ];
 
         return $data;
