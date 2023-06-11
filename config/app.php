@@ -181,6 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -216,6 +217,7 @@ return [
         'Socials' => App\Core\SocialConstants::class,
         'Configurations' => App\Core\ConfigurationConstants::class,
         'Points' => App\Core\PointsConstants::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class        ,
     ])->toArray(),
 
 ];

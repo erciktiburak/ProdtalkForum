@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SocialiteController;
@@ -7,7 +8,6 @@ use App\Models\Discussion;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,6 +63,8 @@ Route::get('search', function () {
     return view('search');
 })
     ->name('search');
+
+Route::get('/pie', [ChartController::class, 'pieChart']);
 
 Route::middleware(['auth', 'verified'])
     ->group(function () {
@@ -162,3 +164,4 @@ Route::middleware(['auth', 'verified'])
             ->name('logout');
 
     });
+    
