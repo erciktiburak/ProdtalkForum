@@ -165,3 +165,6 @@ Route::middleware(['auth', 'verified'])
 
     });
     
+    Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
