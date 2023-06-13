@@ -11,6 +11,12 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\TextColumn;
+
 
 class UserResource extends Resource
 {
@@ -21,6 +27,11 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = 'Users & Permissions';
 
     protected static ?int $navigationSort = 1;
+
+    protected function getDefaultTableSortColumn(): ?string { return 'full_name'; }
+
+    protected function getDefaultTableSortDirection(): ?string { return 'asc'; }
+
 
     public static function form(Form $form): Form
     {
@@ -49,22 +60,24 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('picture')->label('')->circular(),
+
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Full name')->searchable(),
+                    ->label('Full name')->searchable()->sortable(),
 
                 Tables\Columns\TextColumn::make('email')
-                    ->label('Email address'),
+                    ->label('Email address')->sortable(),
 
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->label('Account verified at')
-                    ->dateTime(),
+                    ->dateTime()->sortable(),
 
                 Tables\Columns\TagsColumn::make('roles.name')
                     ->label('Roles')
-                    ->limit()
+                    ->limit()->sortable()
             ])
             ->filters([
-                //
+                SelectFilter::make('roles')->relationship('roles', 'name'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
