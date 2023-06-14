@@ -26,12 +26,16 @@ class LatestNSFWComments extends BaseWidget
     protected function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('user.name')
+            Tables\Columns\TextColumn::make('User.name')
                 ->label('User'),
+            
+            Tables\Columns\TextColumn::make('content')
+                ->label('Content')
+                ->sortable(),
 
             Tables\Columns\TextColumn::make('source')
-                ->label('Discussion')
-                ->searchable()
+                ->label('Discussion')->searchable()
+                ->sortable()
                 ->formatStateUsing(function ($record) {
                     if ($record->source_type == Discussion::class) {
                         $discussion = $record->source;
@@ -42,10 +46,12 @@ class LatestNSFWComments extends BaseWidget
                 }),
 
             Tables\Columns\TextColumn::make('likes_count')
-                ->label('Likes'),
+                ->label('Likes')
+                ->sortable(),
             
             Tables\Columns\TextColumn::make('is_nsfw')
                 ->label('NSFW')
+                ->sortable()
         ];
     }
 

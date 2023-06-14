@@ -27,22 +27,28 @@ class LatestNSFWDiscussions extends BaseWidget
     {
         return [
             Tables\Columns\TextColumn::make('user.name')
-                ->label('User'),
+                ->label('User')
+                ->searchable(),
 
             Tables\Columns\TextColumn::make('name')
-                ->label('Discussion')->searchable(),
+                ->label('Discussion')
+                ->searchable(),
 
             Tables\Columns\TextColumn::make('replies_count')
-                ->label('Replies'),
+                ->label('Replies')
+                ->sortable(),
 
             Tables\Columns\TextColumn::make('comments_count')
-                ->label('Comments'),
+                ->label('Comments')
+                ->sortable(),
 
             Tables\Columns\TextColumn::make('likes_count')
-                ->label('Likes'),
+                ->label('Likes')
+                ->sortable(),
             
             Tables\Columns\TextColumn::make('is_nsfw')
                 ->label('NSFW')
+                ->sortable()
         ];
     }
 

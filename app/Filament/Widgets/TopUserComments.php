@@ -22,10 +22,12 @@ class TopUserComments extends BaseWidget
     {
         return [
             Tables\Columns\TextColumn::make('name')
-                ->label('User'),
+                ->label('User')
+                ->searchable(),
 
             Tables\Columns\TextColumn::make('comments_count')
                 ->label('Comment Count')
+                ->sortable(),
         ];
     }
 }

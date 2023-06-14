@@ -25,10 +25,13 @@ class LatestLikes extends BaseWidget
     {
         return [
             Tables\Columns\TextColumn::make('user.name')
-                ->label('User'),
+                ->label('User')
+                ->searchable(),
 
             Tables\Columns\TextColumn::make('source')
                 ->label('Discussion')
+                ->searchable()
+                ->sortable()
                 ->formatStateUsing(function ($record) {
                     if ($record->source_type == Discussion::class) {
                         $discussion = $record->source;

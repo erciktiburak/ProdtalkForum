@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Reply;
+use App\Models\Discussion;
 use Filament\Tables;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Illuminate\Database\Eloquent\Builder;
@@ -28,17 +29,25 @@ class LatestNSFWReplies extends BaseWidget
             Tables\Columns\TextColumn::make('user.name')
                 ->label('User'),
 
+            Tables\Columns\TextColumn::make('content')
+                ->label('Content')
+                ->searchable()
+                ->sortable(),
+                
             Tables\Columns\TextColumn::make('discussion.name')
                 ->label('Discussion'),
 
             Tables\Columns\TextColumn::make('comments_count')
-                ->label('Comments'),
+                ->label('Comments')
+                ->sortable(),
 
             Tables\Columns\TextColumn::make('likes_count')
-                ->label('Likes'),
+                ->label('Likes')
+                ->sortable(),
             
             Tables\Columns\TextColumn::make('is_nsfw')
                 ->label('NSFW')
+                ->sortable(),
         ];
     }
 
