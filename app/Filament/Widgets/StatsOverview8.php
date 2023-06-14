@@ -4,7 +4,6 @@ namespace App\Filament\Widgets;
 
 use App\Models\Reply;
 use Filament\Widgets\PieChartWidget;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview8 extends PieChartWidget
 {
@@ -20,6 +19,7 @@ class StatsOverview8 extends PieChartWidget
 
         $data = [
             'labels' => ['NSFW', 'SFW'],
+            'maintainAspectRatio' => false, // This is needed to make the chart 'responsive
             'datasets' => [
                 [
                     'label' => 'My First Dataset',

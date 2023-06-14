@@ -4,7 +4,6 @@ namespace App\Filament\Widgets;
 
 use App\Models\Comment;
 use Filament\Widgets\PieChartWidget;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview9 extends PieChartWidget
 {
