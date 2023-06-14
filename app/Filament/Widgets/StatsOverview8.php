@@ -8,8 +8,6 @@ use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview8 extends PieChartWidget
 {
-    protected int | string | array $columnSpan = '1/3';
-
     protected function getHeading(): string
     {
         return 'Reply Types';

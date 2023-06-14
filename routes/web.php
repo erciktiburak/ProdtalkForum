@@ -64,8 +64,6 @@ Route::get('search', function () {
 })
     ->name('search');
 
-Route::get('/pie', [ChartController::class, 'pieChart']);
-
 Route::middleware(['auth', 'verified'])
     ->group(function () {
 
