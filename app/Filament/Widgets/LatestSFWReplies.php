@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Widgets;
+/* namespace App\Filament\Widgets;
 
 use App\Models\Reply;
 use Filament\Tables;
@@ -55,4 +55,4 @@ class LatestSFWReplies extends BaseWidget
                 ]), true)
         ];
     }
-}
+} */

@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class LatestNSFWComments extends BaseWidget
 {
     protected static ?int $sort = 4;
+    protected int | string | array $columnSpan = 'full';
 
     protected function getTableQuery(): Builder
     {
@@ -30,6 +31,7 @@ class LatestNSFWComments extends BaseWidget
 
             Tables\Columns\TextColumn::make('source')
                 ->label('Discussion')
+                ->searchable()
                 ->formatStateUsing(function ($record) {
                     if ($record->source_type == Discussion::class) {
                         $discussion = $record->source;

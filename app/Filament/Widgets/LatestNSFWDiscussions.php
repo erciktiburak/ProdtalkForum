@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 class LatestNSFWDiscussions extends BaseWidget
 {
     protected static ?int $sort = 2;
+    protected int | string | array $columnSpan = 'full';
 
     protected function getTableQuery(): Builder
     {
@@ -25,8 +26,11 @@ class LatestNSFWDiscussions extends BaseWidget
     protected function getTableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('user.name')
+                ->label('User'),
+
             Tables\Columns\TextColumn::make('name')
-                ->label('Discussion'),
+                ->label('Discussion')->searchable(),
 
             Tables\Columns\TextColumn::make('replies_count')
                 ->label('Replies'),

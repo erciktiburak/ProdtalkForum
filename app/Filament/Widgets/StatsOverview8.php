@@ -2,21 +2,23 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Comment;
+use App\Models\Reply;
 use Filament\Widgets\PieChartWidget;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview8 extends PieChartWidget
 {
+    protected int | string | array $columnSpan = '1/3';
+
     protected function getHeading(): string
     {
-        return 'Comment Types';
+        return 'Reply Types';
     }
 
     protected function getData(): array
     {
-        $nsfwCount = Comment::where('is_nsfw', 1)->count();
-        $sfwCount = Comment::where('is_nsfw', 0)->count();
+        $nsfwCount = Reply::where('is_nsfw', 1)->count();
+        $sfwCount = Reply::where('is_nsfw', 0)->count();
 
         $data = [
             'labels' => ['NSFW', 'SFW'],

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Widgets;
+/* namespace App\Filament\Widgets;
 
 use App\Models\Comment;
 use App\Models\Discussion;
@@ -67,4 +67,4 @@ class LatestSFWComments extends BaseWidget
                 }, true)
         ];
     }
-}
+} */

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Widgets;
+/* namespace App\Filament\Widgets;
 
 use App\Models\Discussion;
 use Filament\Tables;
@@ -56,4 +56,4 @@ class LatestSFWDiscussions extends BaseWidget
                 ]), true)
         ];
     }
-}
+} */
