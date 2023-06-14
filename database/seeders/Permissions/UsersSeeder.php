@@ -13,12 +13,12 @@ class UsersSeeder extends Seeder
 
     public static array $admin = [
         'name' => 'Administrator',
-        'email' => 'admin@forumium.app'
+        'email' => 'admin@prodtalk.com'
     ];
 
     public static array $mod = [
         'name' => 'Moderator',
-        'email' => 'mod@forumium.app'
+        'email' => 'mod@prodtalk.com'
     ];
 
     /**
