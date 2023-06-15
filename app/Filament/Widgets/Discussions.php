@@ -14,7 +14,7 @@ use Filament\Widgets\StatsOverviewWidget\Card;
 
 class Discussions extends BaseWidget
 {
-    protected static ?int $sort = 1;
+    protected static ?int $sort = 3;
 
     protected function getCards(): array
     {

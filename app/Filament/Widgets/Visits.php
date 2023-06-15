@@ -14,7 +14,7 @@ use Filament\Widgets\StatsOverviewWidget\Card;
 
 class Visits extends BaseWidget
 {
-    protected static ?int $sort = 1;
+    protected static ?int $sort = 2;
 
     protected function getCards(): array
     {

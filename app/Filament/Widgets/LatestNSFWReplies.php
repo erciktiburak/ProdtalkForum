@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class LatestNSFWReplies extends BaseWidget
 {
-    protected static ?int $sort = 3;
+    protected static ?int $sort = 7;
     protected int | string | array $columnSpan = 'full';
     protected function getTableQuery(): Builder
     {

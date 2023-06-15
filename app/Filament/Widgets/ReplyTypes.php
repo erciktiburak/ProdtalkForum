@@ -7,6 +7,8 @@ use Filament\Widgets\PieChartWidget;
 
 class ReplyTypes extends PieChartWidget
 {
+    protected static ?int $sort = 12;
+
     protected function getHeading(): string
     {
         return 'Reply Types';

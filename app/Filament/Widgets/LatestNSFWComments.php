@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class LatestNSFWComments extends BaseWidget
 {
-    protected static ?int $sort = 4;
+    protected static ?int $sort = 8;
     protected int | string | array $columnSpan = 'full';
 
     protected function getTableQuery(): Builder

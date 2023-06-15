@@ -7,6 +7,8 @@ use Filament\Widgets\LineChartWidget ;
 
 class DiscussionCreationDates extends LineChartWidget 
 {
+    protected static ?int $sort = 1;
+
     protected function getHeading(): string
     {
         return 'Discussion Creation Dates';

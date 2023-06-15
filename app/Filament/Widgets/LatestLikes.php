@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class LatestLikes extends BaseWidget
 {
-    protected static ?int $sort = 5;
+    protected static ?int $sort = 9;
 
     protected function getTableQuery(): Builder
     {

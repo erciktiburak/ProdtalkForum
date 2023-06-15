@@ -8,9 +8,7 @@ use Illuminate\Support\Carbon;
 
 class UserCreationDates extends BarChartWidget
 {
-    protected static ?int $sort = 1;
-
-
+    protected static ?int $sort =1;
     protected function getHeading(): string
     {
         return 'User Creation Dates';
