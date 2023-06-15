@@ -6,6 +6,8 @@ use App\Models\User;
 use Filament\Tables;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
+
 
 class TopUserComments extends BaseWidget
 {
@@ -30,4 +32,5 @@ class TopUserComments extends BaseWidget
                 ->sortable(),
         ];
     }
+
 }
