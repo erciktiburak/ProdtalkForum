@@ -18,6 +18,7 @@ class DiscussionResource extends Resource
     protected static ?string $model = Discussion::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = 'THREADS';
 
     public static function form(Form $form): Form
     {

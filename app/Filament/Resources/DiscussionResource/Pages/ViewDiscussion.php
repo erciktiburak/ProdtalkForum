@@ -4,9 +4,9 @@ namespace App\Filament\Resources\DiscussionResource\Pages;
 
 use App\Filament\Resources\DiscussionResource;
 use Filament\Pages\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditDiscussion extends EditRecord
+class ViewDiscussion extends ViewRecord
 {
     protected static string $resource = DiscussionResource::class;
 
