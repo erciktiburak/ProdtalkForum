@@ -12,18 +12,23 @@ use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Card;
 
-class StatsOverview1 extends BaseWidget
+class LikeTags extends BaseWidget
 {
     protected static ?int $sort = 1;
 
     protected function getCards(): array
     {
         return [
-        
-            Card::make('Users', User::count())
-                ->descriptionIcon('heroicon-o-users')
-                ->description('Total platform users')
-                ->color('danger'),
+            
+            Card::make('Likes', Like::count())
+                ->descriptionIcon('heroicon-o-thumb-up')
+                ->description('Total likes registered')
+                ->color('success'),
+
+            Card::make('Tags', Tag::count())
+                ->descriptionIcon('heroicon-o-tag')
+                ->description('Total configured tags')
+                ->color('warning'),
 
         ];
     }

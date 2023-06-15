@@ -6,7 +6,7 @@ use App\Models\Discussion;
 use App\Models\Tag;
 use Filament\Widgets\RadarChartWidget;
 
-class StatsOverview10 extends RadarChartWidget
+class DiscussionTags extends RadarChartWidget
 {
     protected function getHeading(): string
     {

@@ -2,20 +2,20 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Comment;
+use App\Models\Discussion;
 use Filament\Widgets\PieChartWidget;
 
-class StatsOverview9 extends PieChartWidget
+class DiscussionTypes extends PieChartWidget
 {
     protected function getHeading(): string
     {
-        return 'Comment Types';
+        return 'Discussion Types';
     }
 
     protected function getData(): array
     {
-        $nsfwCount = Comment::where('is_nsfw', 1)->count();
-        $sfwCount = Comment::where('is_nsfw', 0)->count();
+        $nsfwCount = Discussion::where('is_nsfw', 1)->count();
+        $sfwCount = Discussion::where('is_nsfw', 0)->count();
 
         $data = [
             'labels' => ['NSFW', 'SFW'],

@@ -5,7 +5,7 @@ namespace App\Filament\Widgets;
 use App\Models\Discussion;
 use Filament\Widgets\LineChartWidget ;
 
-class StatsOverview6 extends LineChartWidget 
+class DiscussionCreationDates extends LineChartWidget 
 {
     protected function getHeading(): string
     {

@@ -2,25 +2,26 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Discussion;
+use App\Models\Reply;
 use Filament\Widgets\PieChartWidget;
 
-class StatsOverview7 extends PieChartWidget
+class ReplyTypes extends PieChartWidget
 {
     protected function getHeading(): string
     {
-        return 'Discussion Types';
+        return 'Reply Types';
     }
 
     protected function getData(): array
     {
-        $nsfwCount = Discussion::where('is_nsfw', 1)->count();
-        $sfwCount = Discussion::where('is_nsfw', 0)->count();
+        $nsfwCount = Reply::where('is_nsfw', 1)->count();
+        $sfwCount = Reply::where('is_nsfw', 0)->count();
 
         $data = [
             'labels' => ['NSFW', 'SFW'],
             'datasets' => [
                 [
+ 
                     'label' => 'My First Dataset',
                     'data' => [$nsfwCount, $sfwCount],
                     'backgroundColor' => [

@@ -6,8 +6,11 @@ use App\Models\User;
 use Filament\Widgets\BarChartWidget;
 use Illuminate\Support\Carbon;
 
-class StatsOverview5 extends BarChartWidget
+class UserCreationDates extends BarChartWidget
 {
+    protected static ?int $sort = 1;
+
+
     protected function getHeading(): string
     {
         return 'User Creation Dates';
