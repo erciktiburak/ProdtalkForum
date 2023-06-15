@@ -8,7 +8,7 @@ use Filament\Widgets\PieChartWidget;
 class CommentTypes extends PieChartWidget
 {
     protected static ?int $sort = 13;
-
+    protected int | string | array $columnSpan = '3';
     protected function getHeading(): string
     {
         return 'Comment Types';

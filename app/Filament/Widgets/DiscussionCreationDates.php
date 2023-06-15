@@ -14,6 +14,8 @@ class DiscussionCreationDates extends LineChartWidget
         return 'Discussion Creation Dates';
     }
 
+    protected int | string | array $columnSpan = '3';
+
     protected function getData(): array
     {
         $labels = [

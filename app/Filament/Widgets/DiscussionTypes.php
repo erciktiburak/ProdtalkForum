@@ -8,7 +8,7 @@ use Filament\Widgets\PieChartWidget;
 class DiscussionTypes extends PieChartWidget
 {
     protected static ?int $sort = 11;
-
+    protected int | string | array $columnSpan = '3';
     protected function getHeading(): string
     {
         return 'Discussion Types';

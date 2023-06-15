@@ -8,8 +8,8 @@ use Filament\Widgets\RadarChartWidget;
 
 class DiscussionTags extends RadarChartWidget
 {
-    protected static ?int $sort = 1;
-
+    protected static ?int $sort = 16;
+    
     protected function getHeading(): string
     {
         return 'Discussion Tags';
