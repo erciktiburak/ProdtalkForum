@@ -49,9 +49,8 @@ class LatestNSFWComments extends BaseWidget
                 ->label('Likes')
                 ->sortable(),
             
-            Tables\Columns\TextColumn::make('is_nsfw')
-                ->label('NSFW')
-                ->sortable()
+            Tables\Columns\BooleanColumn::make('is_nsfw')
+                ->label('NSFW'),
         ];
     }
 
