@@ -14,6 +14,8 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Core\ConfigurationConstants;
+
 
 class DiscussionResource extends Resource
 {
@@ -27,30 +29,34 @@ class DiscussionResource extends Resource
 {
     return $form
         ->schema([
-            Forms\Components\TextInput::make('name')
-                    ->label('Name')
-                    ->unique(table: Discussion::class, column: 'name', ignorable: function ($livewire) {
-                        if ($livewire instanceof EditRecord) {
-                            return $livewire->record;
-                        } else {
-                            return null;
-                        }
-                    })
-                    ->required()
-                    ->maxLength(255),
-
-            Forms\Components\Select::make('tags')
-                ->label('Tags')
-                ->required()
-                ->multiple()
-                ->maxItems(3)
-                ->relationship('tags', 'name', 'name'),
-
-            Forms\Components\RichEditor::make('content')
-                ->label('Content')
-                ->required(),   
-
+                Forms\Components\Toggle::make('is_public')
+                    ->label('Is this discussion public?')
+                    ->visible(fn() => ConfigurationConstants::case('Enable public discussions')),
     
+                Forms\Components\Grid::make()
+                    ->columns(5)
+                    ->schema([
+    
+                            Forms\Components\TextInput::make('name')
+                            ->label('Discussion title')
+                            ->required()
+                            ->columnSpan(3)
+                            ->maxLength(255),
+    
+                            Forms\Components\Select::make('tags')
+                            ->label('Tags')
+                            ->required()
+                            ->multiple()
+                            ->columnSpan(2)
+                            ->maxItems(3)
+                            ->options(Tag::all()->pluck('name', 'id')),
+    
+                    ]),
+    
+                Forms\Components\RichEditor::make('content')
+                    ->label('Discussion content')
+                    ->required()
+                    ->columnSpan(2),    
         ]);
 }
 
