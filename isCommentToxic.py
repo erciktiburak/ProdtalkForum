@@ -8,14 +8,14 @@ from nltk.stem import WordNetLemmatizer
 import pickle
 import sys
 
-#nltk.download('stopwords')
-#nltk.download('punkt')
-#nltk.download('wordnet')
+# nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('wordnet')
 
 lemmatizer = WordNetLemmatizer()
-model = tf.keras.models.load_model('/home/server/prodtalk/toxic_comment_model.h5', compile=False)
+model = tf.keras.models.load_model('/var/www/prodtalk-private/toxic_comment_model.h5', compile=False)
 
-tokenizer = pickle.load(open('/home/server/prodtalk/toxic_comment_tokenizer.pickle', 'rb'))
+tokenizer = pickle.load(open('/var/www/prodtalk-private/toxic_comment_tokenizer.pickle', 'rb'))
 stop_words = set(stopwords.words('english'))
 maxlen = 100  # This should be the same maxlen used in the original script
 

@@ -180,8 +180,8 @@ class ReplyDetails extends Component implements HasForms
     public function saveComment(): void
     {
         $data = $this->form->getState();
-        $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /home/server/prodtalk/isCommentToxic.py", $out, $returnCode);
-        error_log(print_r("echo '{$data['content']}' | python3 /home/server/prodtalk/isCommentToxic.py", TRUE));
+        $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /var/www/prodtalk-private/isCommentToxic.py", $out, $returnCode);
+        error_log(print_r("echo '{$data['content']}' | python3 /var/www/prodtalk-private/isCommentToxic.py", TRUE));
         
         $this->comment->content = $data['content'];
         $isCreation = false;

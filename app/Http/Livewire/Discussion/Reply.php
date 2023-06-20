@@ -62,7 +62,7 @@ class Reply extends Component implements HasForms
     public function submit(): void
     {
         $data = $this->form->getState();
-        $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /home/server/prodtalk/isCommentToxic.py", $out, $returnCode);
+        $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /var/www/prodtalk-private/isCommentToxic.py", $out, $returnCode);
         error_log(print_r("value = {$returnCode} {$data['content']}"));
         if ($this->reply) {
             $this->reply->is_nsfw = $returnCode;
