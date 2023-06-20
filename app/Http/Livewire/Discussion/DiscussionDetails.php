@@ -120,6 +120,9 @@ class DiscussionDetails extends Component implements HasForms
     public function saveComment(): void
     {
         $data = $this->form->getState();
+        $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /var/www/prodtalk-private/isCommentToxic.py", $out, $returnCode);
+        error_log(print_r("value = {$returnCode} {$data['content']}"));
+        
         $isCreation = false;
 
         $this->comment->content = $data['content'];
@@ -130,6 +133,7 @@ class DiscussionDetails extends Component implements HasForms
 
             $isCreation = true;
         }
+        $this->comment->is_nsfw = (int) $returnCode;
         $this->comment->save();
         $this->emit('commentSaved');
         Filament::notify('success', 'Comment successfully saved.');
