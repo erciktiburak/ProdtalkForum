@@ -81,24 +81,14 @@ class Discussion extends Component implements HasForms
     {
         $data = $this->form->getState();
         $update = false;
-    
-        // Benzer bir discussionu kontrol etmek için sorgu yapılıyor
-        $existingDiscussion = DiscussionModel::where('name', $data['name'])->first();
-    
-        if ($existingDiscussion) {
-            // Benzer bir discussion zaten var!!
-            Filament::notify('error', 'A similar discussion already exists');
-            return;
-        }
-    
+
         $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /var/www/prodtalk-private/isCommentToxic.py", $out, $returnCode);
         error_log(print_r("value = {$returnCode} {$data['content']}"));
-    
         if ($this->discussion) {
-            // Var olan discussion güncellenir
             $this->discussion->name = $data['name'];
             $this->discussion->content = $data['content'];
             $this->discussion->is_public = $data['is_public'] ?? false;
+    
             $this->discussion->is_nsfw = (int) $returnCode; // Explicitly cast to integer
             $this->discussion->save();
             DiscussionTag::where('discussion_id', $this->discussion->id)->delete();
@@ -106,7 +96,6 @@ class Discussion extends Component implements HasForms
             $discussion = $this->discussion;
             dispatch(new DispatchNotificationsJob(auth()->user(), NotificationConstants::MY_DISCUSSION_EDITED->value, $this->discussion));
         } else {
-            // Yeni discussion oluşturuluyor
             $discussion = DiscussionModel::create([
                 'name' => $data['name'],
                 'user_id' => auth()->user()->id,
@@ -116,33 +105,33 @@ class Discussion extends Component implements HasForms
             ]);
             dispatch(new CalculateUserPointsJob(user: auth()->user(), source: $discussion, type: PointsConstants::START_DISCUSSION->value));
         }
-    
         $addedNSFWTag = false;
-    
-        foreach ($data['tags'] as $tag) {
+
+        foreach ($data['tags'] as $tag) {  
+
             DiscussionTag::create([
+
                 'discussion_id' => $discussion->id,
                 'tag_id' => $tag
             ]);
-    
-            if ($tag === 11) {
+
+            if ($tag === 11){
                 $addedNSFWTag = true;
             }
         }
-    
-        if (!$addedNSFWTag && $returnCode === 1) {
+
+        if (!$addedNSFWTag && $returnCode === 1){
             DiscussionTag::create([
                 'discussion_id' => $discussion->id,
                 'tag_id' => 11
-            ]);
+            ]); 
         }
-    
+
         Filament::notify(
             'success',
             ($update ? 'Discussion updated successfully' : 'Discussion created successfully'),
             !$update
         );
-    
         if ($update) {
             $this->emit('discussionEdited');
         } else {
