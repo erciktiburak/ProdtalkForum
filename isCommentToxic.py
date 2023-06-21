@@ -14,7 +14,6 @@ import sys
 
 lemmatizer = WordNetLemmatizer()
 model = tf.keras.models.load_model('/var/www/prodtalk-private/toxic_comment_model.h5', compile=False)
-
 tokenizer = pickle.load(open('/var/www/prodtalk-private/toxic_comment_tokenizer.pickle', 'rb'))
 stop_words = set(stopwords.words('english'))
 maxlen = 100  # This should be the same maxlen used in the original script
