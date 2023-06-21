@@ -1,6 +1,6 @@
 <?php
 
-/* namespace App\Filament\Widgets;
+namespace App\Filament\Widgets;
 
 use App\Models\Discussion;
 use Filament\Tables;
@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class LatestSFWDiscussions extends BaseWidget
 {
-    protected static ?int $sort = 2;
+    protected static ?int $sort = 6;
 
     protected function getTableQuery(): Builder
     {
@@ -56,4 +56,4 @@ class LatestSFWDiscussions extends BaseWidget
                 ]), true)
         ];
     }
-} */
+}

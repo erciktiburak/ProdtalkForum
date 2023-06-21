@@ -1,6 +1,6 @@
 <?php
 
-/* namespace App\Filament\Widgets;
+namespace App\Filament\Widgets;
 
 use App\Models\Reply;
 use Filament\Tables;
@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class LatestSFWReplies extends BaseWidget
 {
-    protected static ?int $sort = 3;
+    protected static ?int $sort = 7;
 
     protected function getTableQuery(): Builder
     {
@@ -55,4 +55,4 @@ class LatestSFWReplies extends BaseWidget
                 ]), true)
         ];
     }
-} */
+}

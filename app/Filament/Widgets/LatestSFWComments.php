@@ -1,41 +1,30 @@
 <?php
 
 namespace App\Filament\Widgets;
-
 use App\Models\Comment;
 use App\Models\Discussion;
 use Filament\Tables;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
-
-class LatestNSFWComments extends BaseWidget
+class LatestSFWComments extends BaseWidget
 {
     protected static ?int $sort = 8;
-    //protected int | string | array $columnSpan = 'full';
-
     protected function getTableQuery(): Builder
     {
         return Comment::query()
             ->withCount('likes')
             ->with(['user'])
             ->latest()
-            ->where("is_nsfw", 1);
+            ->where("is_nsfw", 0);
     }
-
     protected function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('User.name')
+            Tables\Columns\TextColumn::make('user.name')
                 ->label('User'),
-            
-            Tables\Columns\TextColumn::make('content')
-                ->label('Content')
-                ->sortable(),
-
             Tables\Columns\TextColumn::make('source')
-                ->label('Discussion')->searchable()
-                ->sortable()
+                ->label('Discussion')
                 ->formatStateUsing(function ($record) {
                     if ($record->source_type == Discussion::class) {
                         $discussion = $record->source;
@@ -44,16 +33,13 @@ class LatestNSFWComments extends BaseWidget
                     }
                     return $discussion->name;
                 }),
-
             Tables\Columns\TextColumn::make('likes_count')
-                ->label('Likes')
-                ->sortable(),
+                ->label('Likes'),
             
-            Tables\Columns\BooleanColumn::make('is_nsfw')
-                ->label('NSFW'),
+            Tables\Columns\TextColumn::make('is_nsfw')
+                ->label('NSFW')
         ];
     }
-
     protected function getTableActions(): array
     {
         return [
@@ -74,4 +60,4 @@ class LatestNSFWComments extends BaseWidget
                 }, true)
         ];
     }
-}
+} 
