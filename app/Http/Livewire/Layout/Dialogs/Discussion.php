@@ -82,12 +82,7 @@ class Discussion extends Component implements HasForms
         $data = $this->form->getState();
         $update = false;
 
-        $command = 'bash /var/www/prodtalk-private/toxic.sh "' . $data['content'] . '"';
-
-        $output = null;
-        $returnCode = null;
-        exec($command, $output, $returnCode);
-
+        $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /var/www/prodtalk-private/isCommentToxic.py", $out, $returnCode);
         error_log(print_r("value = {$returnCode} {$data['content']}"));
         if ($this->discussion) {
             $this->discussion->name = $data['name'];
@@ -153,4 +148,3 @@ class Discussion extends Component implements HasForms
         $this->emit('updateDiscussionCanceled');
     }
 }
-
