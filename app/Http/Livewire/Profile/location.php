@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Profile;
 
 use Livewire\Component;
 
-class MapVisits extends Component
+class location extends Component
 {
     public $user;
     public $data = [];
