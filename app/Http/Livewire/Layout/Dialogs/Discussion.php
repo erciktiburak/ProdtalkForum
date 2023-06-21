@@ -83,7 +83,7 @@ class Discussion extends Component implements HasForms
     $data = $this->form->getState();
     $update = false;
 
-    $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /home/server/prodtalk/isCommentToxic.py", $out, $returnCode);
+    $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /var/www/prodtalk-private/isCommentToxic.py", $out, $returnCode);
     error_log(print_r("value = {$returnCode} {$data['content']}"));
 
     if ($this->discussion) {
