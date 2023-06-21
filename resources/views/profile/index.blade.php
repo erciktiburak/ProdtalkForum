@@ -48,5 +48,6 @@
     </div>
 
     <x-profile.stats :user="$user"/>
+    <livewire:profile.location :user="$user" />
     
 </x-layout-profile>

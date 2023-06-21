@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Profile;
 
 use Livewire\Component;
 
-class WorldMapVisits extends Component
+class MapVisits extends Component
 {
     public $user;
     public $data = [];
@@ -16,7 +16,7 @@ class WorldMapVisits extends Component
 
     public function render()
     {
-        return view('livewire.profile.world-map-visits');
+        return view('livewire.profile.location');
     }
 
     private function initVisitsData(): void
