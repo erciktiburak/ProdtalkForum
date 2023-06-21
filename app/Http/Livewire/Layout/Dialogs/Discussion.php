@@ -95,7 +95,9 @@ class Discussion extends Component implements HasForms
             $update = true;
             $discussion = $this->discussion;
             dispatch(new DispatchNotificationsJob(auth()->user(), NotificationConstants::MY_DISCUSSION_EDITED->value, $this->discussion));
+            
         } else {
+
             $discussion = DiscussionModel::create([
                 'name' => $data['name'],
                 'user_id' => auth()->user()->id,
@@ -103,6 +105,7 @@ class Discussion extends Component implements HasForms
                 'is_public' => $data['is_public'] ?? false,
                 'is_nsfw' => (int) $returnCode // Explicitly cast to integer
             ]);
+
             dispatch(new CalculateUserPointsJob(user: auth()->user(), source: $discussion, type: PointsConstants::START_DISCUSSION->value));
         }
         $addedNSFWTag = false;
@@ -132,6 +135,7 @@ class Discussion extends Component implements HasForms
             ($update ? 'Discussion updated successfully' : 'Discussion created successfully'),
             !$update
         );
+
         if ($update) {
             $this->emit('discussionEdited');
         } else {
