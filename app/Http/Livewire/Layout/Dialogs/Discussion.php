@@ -47,7 +47,6 @@ class Discussion extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            
             Toggle::make('is_public')
                 ->label('Is this discussion public?')
                 ->visible(fn() => ConfigurationConstants::case('Enable public discussions')),
@@ -70,7 +69,7 @@ class Discussion extends Component implements HasForms
                         ->maxItems(3)
                         ->options(Tag::all()->pluck('name', 'id')),
 
-                ]),  
+                ]),
 
             RichEditor::make('content')
                 ->label('Discussion content')
@@ -80,66 +79,72 @@ class Discussion extends Component implements HasForms
 
     public function submit(): void
     {
-    $data = $this->form->getState();
-    $update = false;
+        $data = $this->form->getState();
+        $update = false;
 
-    $toxicity = exec("echo \"" . $data['content'] . "\" | python3 /var/www/prodtalk-private/isCommentToxic.py", $out, $returnCode);
-    error_log(print_r("value = {$returnCode} {$data['content']}"));
+        $command = 'bash /var/www/prodtalk-private/toxic.sh "' . $data['content'] . '"';
 
-    if ($this->discussion) {
-        $this->discussion->name = $data['name'];
-        $this->discussion->content = $data['content'];
-        $this->discussion->is_public = $data['is_public'] ?? false;
+        $output = null;
+        $returnCode = null;
+        exec($command, $output, $returnCode);
 
-        $this->discussion->is_nsfw = (int) $returnCode; // Explicitly cast to integer
-        $this->discussion->save();
-        DiscussionTag::where('discussion_id', $this->discussion->id)->delete();
-        $update = true;
-        $discussion = $this->discussion;
-        dispatch(new DispatchNotificationsJob(auth()->user(), NotificationConstants::MY_DISCUSSION_EDITED->value, $this->discussion));
+        error_log(print_r("value = {$returnCode} {$data['content']}"));
+        if ($this->discussion) {
+            $this->discussion->name = $data['name'];
+            $this->discussion->content = $data['content'];
+            $this->discussion->is_public = $data['is_public'] ?? false;
+    
+            $this->discussion->is_nsfw = (int) $returnCode; // Explicitly cast to integer
+            $this->discussion->save();
+            DiscussionTag::where('discussion_id', $this->discussion->id)->delete();
+            $update = true;
+            $discussion = $this->discussion;
+            dispatch(new DispatchNotificationsJob(auth()->user(), NotificationConstants::MY_DISCUSSION_EDITED->value, $this->discussion));
         } else {
-        $discussion = DiscussionModel::create([
-            'name' => $data['name'],
-            'user_id' => auth()->user()->id,
-            'content' => $data['content'],
-            'is_public' => $data['is_public'] ?? false,
-            'is_nsfw' => (int) $returnCode // Explicitly cast to integer
-        ]);
-        dispatch(new CalculateUserPointsJob(user: auth()->user(), source: $discussion, type: PointsConstants::START_DISCUSSION->value));
-    }
-    $addedNSFWTag = false;
-
-    foreach ($data['tags'] as $tag) {  
-        DiscussionTag::create([
-            'discussion_id' => $discussion->id,
-            'tag_id' => $tag
-        ]);
-
-        if ($tag === 11) {
-            $addedNSFWTag = true;
+            $discussion = DiscussionModel::create([
+                'name' => $data['name'],
+                'user_id' => auth()->user()->id,
+                'content' => $data['content'],
+                'is_public' => $data['is_public'] ?? false,
+                'is_nsfw' => (int) $returnCode // Explicitly cast to integer
+            ]);
+            dispatch(new CalculateUserPointsJob(user: auth()->user(), source: $discussion, type: PointsConstants::START_DISCUSSION->value));
         }
-    }
+        $addedNSFWTag = false;
 
-    if (!$addedNSFWTag && $returnCode === 1) {
-        DiscussionTag::create([
-            'discussion_id' => $discussion->id,
-            'tag_id' => 11
-        ]); 
-    }
+        foreach ($data['tags'] as $tag) {  
 
-    Filament::notify(
-        'success',
-        ($update ? 'Discussion updated successfully' : 'Discussion created successfully'),
-        !$update
-    );
-    if ($update) {
-        $this->emit('discussionEdited');
-    } else {
-        $this->redirect(route('discussion', [
-            'discussion' => $discussion,
-            'slug' => Str::slug($discussion->name)
-        ]));
-    }
+            DiscussionTag::create([
+
+                'discussion_id' => $discussion->id,
+                'tag_id' => $tag
+            ]);
+
+            if ($tag === 11){
+                $addedNSFWTag = true;
+            }
+        }
+
+        if (!$addedNSFWTag && $returnCode === 1){
+            DiscussionTag::create([
+                'discussion_id' => $discussion->id,
+                'tag_id' => 11
+            ]); 
+        }
+
+        Filament::notify(
+            'success',
+            ($update ? 'Discussion updated successfully' : 'Discussion created successfully'),
+            !$update
+        );
+        if ($update) {
+            $this->emit('discussionEdited');
+        } else {
+            $this->redirect(route('discussion', [
+                'discussion' => $discussion,
+                'slug' => Str::slug($discussion->name)
+            ]));
+        }
     }
     
 
@@ -148,3 +153,4 @@ class Discussion extends Component implements HasForms
         $this->emit('updateDiscussionCanceled');
     }
 }
+
